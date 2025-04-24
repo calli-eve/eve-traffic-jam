@@ -1,5 +1,4 @@
 import { parse } from 'cookie';
-import config from '../../config.json';
 
 export interface CharacterInfo {
     characterId: string;
@@ -99,6 +98,4 @@ export async function logout(): Promise<void> {
     }
 } 
 
-export function isCorporationAllowed(corporationId: number): boolean {
-    return config.allowedCorporationIds.includes(corporationId);
-} 
+

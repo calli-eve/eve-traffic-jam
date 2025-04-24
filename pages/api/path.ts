@@ -1,14 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { calculateRoute, CalculateRouteInput } from '../../src/route/path-calculator'
 import { parse } from 'cookie'
+import fs from 'fs';
+import path from 'path';
 import { getCharacterAffiliation } from '../../src/utils/eve-api'
-import { isCorporationAllowed } from '../../src/utils/auth'
 import { logUsage } from '../../src/utils/logging'
 
 interface PathRequest {
     from: number
     to: number
 }
+
+const configPath = path.resolve(process.cwd(), 'config.json');
+const configData = fs.readFileSync(configPath, 'utf8');
+const config = JSON.parse(configData);
 
 export default async function handler(
     req: NextApiRequest,
@@ -18,7 +23,6 @@ export default async function handler(
         res.status(405).json({ message: 'Method not allowed' })
         return
     }
-
     try {
         // Check authentication
         const cookies = parse(req.headers.cookie || '')
@@ -33,7 +37,7 @@ export default async function handler(
 
         // Get character affiliation and check if corporation is allowed
         const affiliation = await getCharacterAffiliation(parseInt(characterId), accessToken)
-        if (!isCorporationAllowed(affiliation.corporation_id)) {
+        if (!config.allowedCorporationIds.includes(affiliation.corporation_id)) {
             res.status(403).json({ message: 'Access denied: Corporation not authorized' })
             return
         }
