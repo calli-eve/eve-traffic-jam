@@ -61,8 +61,6 @@ const nextConfig = {
   compiler: {
     // Enable styled-components support
     styledComponents: true,
-    // Enable remove console in production
-    removeConsole: process.env.NODE_ENV === 'production',
   },
 }
 
