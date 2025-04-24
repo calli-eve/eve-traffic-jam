@@ -1,5 +1,16 @@
 import { parse } from 'cookie';
-import config from '../../config.json';
+import fs from 'fs';
+import path from 'path';
+
+let config: { allowedCorporationIds: number[] } = { allowedCorporationIds: [] };
+
+try {
+    const configPath = path.resolve(process.cwd(), 'config.json');
+    const configData = fs.readFileSync(configPath, 'utf8');
+    config = JSON.parse(configData);
+} catch (error) {
+    console.error('Failed to read config.json:', error);
+}
 
 export interface CharacterInfo {
     characterId: string;
