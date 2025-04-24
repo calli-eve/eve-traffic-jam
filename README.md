@@ -30,6 +30,23 @@ The application requires the following environment variables to be set:
 - `NODE_ENV`: Environment (development/production)
 - `PORT`: Port to run the application on (default: 3000)
 
+## Configuration File
+
+The application uses a `config.json` file for static configuration that doesn't change between environments. This file should be placed in the root directory of the project.
+
+### Structure
+```json
+{
+    "allowedCorporationIds": [
+        // Array of corporation IDs that are allowed to use the application
+        // Example: 98600992
+    ]
+}
+```
+
+### Fields
+- `allowedCorporationIds`: An array of EVE Online corporation IDs that are permitted to use the application. Only characters from these corporations will be able to access the pathfinding features.
+
 ## CCP Copyright notice related to all CCP owned assets
 
 EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. CCP hf. has granted permission to [insert your name or site name] to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, [insert name or site name]. CCP is in no way responsible for the content on or functioning of this website, nor can it be liable for any damage arising from the use of this website.

@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    volumes:
+      - ./config.json:/app/config.json:ro
     networks:
       - nginx
 
