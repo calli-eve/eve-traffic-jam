@@ -1,0 +1,13 @@
+services:
+  eve-traffic-jam:
+    image: ghcr.io/calli-eve/eve-traffic-jam:latest
+    container_name: eve-traffic-jam
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external: true 
