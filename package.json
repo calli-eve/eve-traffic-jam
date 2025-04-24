@@ -1,0 +1,46 @@
+{
+  "name": "eve-traffic-jam",
+  "version": "1.0.0",
+  "description": "EVE Online route calculation application",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "eve-online",
+    "routes",
+    "navigation",
+    "tripwire",
+    "eve-scout",
+    "eve-metro",
+    "k-space"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
+    "@types/react-window": "^1.8.8",
+    "axios": "^1.6.7",
+    "cookie": "^1.0.2",
+    "luxon": "^3.4.4",
+    "next": "^15.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-toastify": "^10.0.4",
+    "react-window": "^1.8.11",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.6.0",
+    "@types/luxon": "^3.3.2",
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.57",
+    "eslint": "9.25.1",
+    "eslint-config-next": "15.3.1"
+  }
+}
