@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { parse } from 'cookie';
+import { logUsage } from '../../../src/utils/logging';
 
 const EVE_SSO_CLIENT_ID = process.env.EVE_SSO_CLIENT_ID;
 const EVE_SSO_SECRET_KEY = process.env.EVE_SSO_SECRET_KEY;
@@ -55,6 +56,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         const characterData = await verifyResponse.json();
+
+        // Log successful login
+        await logUsage({
+            timestamp: new Date().toISOString(),
+            event: 'login',
+            characterId: characterData.CharacterID,
+            characterName: characterData.CharacterName,
+        });
 
         // Store the token and character data in secure HTTP-only cookies
         res.setHeader('Set-Cookie', [

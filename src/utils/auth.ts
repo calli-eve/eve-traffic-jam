@@ -1,4 +1,5 @@
 import { parse } from 'cookie';
+import config from '../../config.json';
 
 export interface CharacterInfo {
     characterId: string;
@@ -96,4 +97,8 @@ export async function logout(): Promise<void> {
         // Even if the server logout fails, try to clear local state
         window.location.href = '/';
     }
+} 
+
+export function isCorporationAllowed(corporationId: number): boolean {
+    return config.allowedCorporationIds.includes(corporationId);
 } 

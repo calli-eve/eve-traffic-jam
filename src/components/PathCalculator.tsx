@@ -145,7 +145,16 @@ export default function PathCalculator() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to calculate path');
+                switch (response.status) {
+                    case 401:
+                        throw new Error('Please log in to calculate paths');
+                    case 403:
+                        throw new Error('Your corporation is not authorized to use this service');
+                    case 400:
+                        throw new Error('Please select both start and end systems');
+                    default:
+                        throw new Error(errorData.message || 'Failed to calculate path');
+                }
             }
 
             const result = await response.json();
@@ -286,7 +295,11 @@ export default function PathCalculator() {
                     )}
 
                     {error && (
-                        <Alert severity="error" onClose={() => setError(null)}>
+                        <Alert 
+                            severity="error" 
+                            onClose={() => setError(null)}
+                            sx={{ mt: 2 }}
+                        >
                             {error}
                         </Alert>
                     )}
